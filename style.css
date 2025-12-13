@@ -1,3 +1,23 @@
-* {
-    color: blue;
+h1 { 
+    color : blue;
+    font-size : 24px;
+    text-align : center;
+    background-color: rgb(98, 120, 120);
+}
+#myPara {
+    color: rgb(136, 43, 62);
+    font-size: 18px;
+    margin: 20px;
+    background-color: bisque;
+} 
+
+button {
+    background-color: rgb(179, 136, 56);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
 }
