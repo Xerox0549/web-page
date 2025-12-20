@@ -211,6 +211,40 @@
     });
   }
 
+  // Highlights auto-rotator (cycles active highlight every few seconds; pauses on hover)
+  (function(){
+    const hl = document.querySelectorAll('.highlights li');
+    if(!hl || hl.length === 0) return;
+    let idx = 0, timer = null; const interval = 3000;
+    function activate(i){ hl.forEach((el, n)=> el.classList.toggle('active', n===i)); }
+    function start(){ timer = setInterval(()=>{ idx = (idx+1) % hl.length; activate(idx); }, interval); }
+    function stop(){ if(timer){ clearInterval(timer); timer = null; } }
+    // set initial and start
+    activate(0); start();
+    const container = document.querySelector('.highlights');
+    if(container){ container.addEventListener('mouseenter', stop); container.addEventListener('mouseleave', start); }
+    // allow click to select a highlight
+    hl.forEach((el,i)=> el.addEventListener('click', ()=>{ stop(); idx = i; activate(i); setTimeout(start, interval); }));
+  })();
+
+  // Skills mini-card rotator (cycles active skill; click/hover control)
+  (function(){
+    const cards = Array.from(document.querySelectorAll('.skill-mini'));
+    if(cards.length === 0) return;
+    let i = 0, t = null, delay = 3500;
+    function setActive(idx){ cards.forEach((c,n)=> c.classList.toggle('active', n===idx)); }
+    function start(){ t = setInterval(()=>{ i = (i+1)%cards.length; setActive(i); }, delay); }
+    function stop(){ if(t){ clearInterval(t); t = null; } }
+    // init
+    setActive(0); start();
+    const container = document.querySelector('.skills-cards');
+    if(container){ container.addEventListener('mouseenter', stop); container.addEventListener('mouseleave', ()=>{ setTimeout(start, 500); }); }
+    cards.forEach((c,idx)=>{
+      c.addEventListener('click', ()=>{ stop(); i = idx; setActive(i); setTimeout(start, delay); });
+      c.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); c.click(); } });
+    });
+  })();
+
   // simple toast
   function showToast(msg,ms=2600){
     if(!toastEl) return alert(msg);

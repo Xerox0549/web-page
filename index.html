@@ -64,26 +64,30 @@
       <div class="container hero-inner">
         <div class="hero-copy">
           <h1>Hi, I'm <span class="name">Pushpendra Singh</span><span class="role"> — DevOps &amp; Cloud Engineer</span></h1>
+          <h3>Passionate about Cloud, Automation & Reliable Systems.</h3>
           <p class="lead"><span id="typed" aria-hidden="true"></span><span class="sr-only">DevOps &amp; Cloud Engineer — Kubernetes, CI/CD, Infrastructure Automation</span></p>
           <div class="hero-ctas">
-            <a class="btn primary" href="#contact" aria-label="Hire Pushpendra">Hire me</a>
-            <a class="btn" href="resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download resume">Resume</a>
-            <a class="btn ghost" href="#projects">View Work</a>
+            <a class="btn primary" href="#contact" aria-label="Hire me"><strong class="btn-dot">•</strong> Hire me</a>
+            <a class="btn" href="resume.pdf" target="" rel="noopener noreferrer" aria-label="Download resume"><strong class="btn-dot">•</strong> Download resume</a>
+            <a class="btn ghost" href="#projects" aria-label="View projects"><strong class="btn-dot">•</strong> View Projects</a>
           </div>
 
           <ul class="highlights" role="list" aria-label="Core expertise">
-            <li><strong>Kubernetes</strong><span>Production clusters</span></li>
-            <li><strong>AWS</strong><span>Cloud architecture</span></li>
-            <li><strong>Terraform</strong><span>Infrastructure as Code</span></li>
-            <li><strong>CI/CD</strong><span>Automations & Pipelines</span></li>
+            <li><strong>Kubernetes</strong><span> – Deployed microservices, Ingress, Helm</span></li>
+            <li><strong>AWS</strong><span> – EC2, S3, IAM, VPC, Load Balancer</span></li>
+            <li><strong>Terraform</strong><span> – Infra automation for AWS</span></li>
+            <li><strong>CI/CD</strong><span> – Jenkins | GitHub Actions | Docker</span></li>
           </ul>
         </div>
         <div class="hero-visual" aria-hidden="true">
           <div class="profile-card">
-            <img src="images/profile.svg" alt="Profile" class="profile-image">
+            <div class="profile-image-wrap">
+              <img src="images/Profile.jpeg" alt="Profile" class="profile-image">
+              <span class="profile-badge" aria-hidden="true">✦</span>
+            </div>
 
             <div class="profile-role-block">
-              <h3 class="profile-title">Platform Reliability Engineer</h3>
+              <h3 class="profile-title">Devops Engineer</h3>
               <div class="tech-row" aria-hidden="true">
                 <span class="tech" title="Kubernetes"><img src="https://cdn.simpleicons.org/kubernetes/326ce5" alt="Kubernetes"></span>
                 <span class="tech" title="AWS"><img src="images/aws.svg" alt="AWS"></span>
@@ -99,8 +103,53 @@
 
     <section id="about" class="about reveal">
       <div class="container">
-        <h2>About Me</h2>
-        <p class="about-text">I design and operate reliable cloud infrastructure, automate delivery pipelines, and run production-grade Kubernetes clusters. I focus on observability, cost-efficiency and platform reliability.</p>
+        <h2>ABOUT ME — WHO I AM </h2>
+        <div class="section-divider" aria-hidden="true"></div>
+        <div class="about-grid">
+          <div class="about-copy">
+            <p class="about-text lead">I’m a DevOps & Cloud Engineer with hands‑on experience in AWS, Docker, Kubernetes and CI/CD. I design and operate scalable, reliable infrastructure and automate delivery pipelines to reduce risk and speed up releases.</p>
+            <p class="about-text">My current focus is infrastructure automation, observability, and cloud‑native tooling. I enjoy solving reliability challenges, improving deployment confidence, and helping teams adopt best practices.</p>
+            <div class="about-cta">
+              <a class="btn primary" href="#contact" aria-label="Contact me"><strong class="btn-dot">•</strong> Let’s talk</a>
+            </div>
+          </div>
+
+          <aside class="about-details" aria-label="Key skills">
+            <div class="skills-cards" role="list">
+              <article class="skill-mini" role="listitem" tabindex="0" data-desc="EC2 · S3 · IAM · VPC · Load Balancer">
+                <div class="skill-mini-head">
+                  <span class="mini-dot" aria-hidden="true"></span>
+                  <h4>Cloud</h4>
+                </div>
+                <p class="skill-mini-desc">EC2 · S3 · IAM · VPC · Load Balancer</p>
+              </article>
+
+              <article class="skill-mini" role="listitem" tabindex="0" data-desc="Docker · Kubernetes · Helm">
+                <div class="skill-mini-head">
+                  <span class="mini-dot" aria-hidden="true"></span>
+                  <h4>Containers</h4>
+                </div>
+                <p class="skill-mini-desc">Docker · Kubernetes · Helm</p>
+              </article>
+
+              <article class="skill-mini" role="listitem" tabindex="0" data-desc="Terraform (AWS)">
+                <div class="skill-mini-head">
+                  <span class="mini-dot" aria-hidden="true"></span>
+                  <h4>Infra as Code</h4>
+                </div>
+                <p class="skill-mini-desc">Terraform (AWS)</p>
+              </article>
+
+              <article class="skill-mini" role="listitem" tabindex="0" data-desc="Jenkins · GitHub Actions · Docker">
+                <div class="skill-mini-head">
+                  <span class="mini-dot" aria-hidden="true"></span>
+                  <h4>CI / CD</h4>
+                </div>
+                <p class="skill-mini-desc">Jenkins · GitHub Actions · Docker</p>
+              </article>
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 
@@ -109,13 +158,9 @@
         <h2>Featured Case Study</h2>
         <div class="case-grid">
           <article class="card featured">
-            <div class="card-head"><h3>Platform Reliability & Faster Deployments</h3></div>
-            <p>Implemented a GitOps-based platform with automated canary rollouts and centralized observability, improving deployment confidence and reducing manual intervention. Customize this summary with your real metrics.</p>
-            <div class="card-meta">Tools: Kubernetes · Helm · ArgoCD · Terraform · Prometheus</div>
-            <div class="card-actions">
-              <a class="btn primary card-link" href="#" data-project="Platform Case Study" data-desc="Detailed case study: platform reliability, GitOps, canary deployments and observability." aria-haspopup="dialog">Read Case Study</a>
-              <a class="btn ghost" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">Repo</a>
-            </div>
+            <div class="card-head"><h3>CI/CD Automation with Kubernetes</h3></div>
+            <p>Designed and deployed a Kubernetes-based application with automated CI/CD pipelines. Implemented GitOps using ArgoCD to streamline deployments and configured Prometheus-based monitoring for observability. The project improved deployment reliability and reduced manual intervention.</p>
+            <div class="card-meta">Tools: AWS | Docker | Kubernetes | ArgoCD | GitHub | Prometheus</div>
           </article>
         </div>
       </div>
