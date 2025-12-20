@@ -3,26 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pushpendra Singh — DevOps Engineer</title>
+  <title>Pushpendra Singh — DevOps & Cloud Engineer</title>
+  <meta name="description" content="Portfolio of Pushpendra Singh — DevOps, Cloud, Kubernetes.">
+  <meta property="og:title" content="Pushpendra Singh — DevOps & Cloud Engineer">
+  <meta property="og:description" content="I design and operate reliable cloud infrastructure, automate delivery pipelines, and run production-grade Kubernetes clusters.">
+  <meta name="theme-color" content="#071226">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <meta name="description" content="Portfolio of Pushpendra Singh — DevOps, Cloud, Kubernetes.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Pushpendra Singh",
+    "url": "https://example.com",
+    "jobTitle": "DevOps & Cloud Engineer",
+    "sameAs": [
+      "https://github.com/your-username",
+      "https://www.linkedin.com/in/your-profile"
+    ]
+  }
+  </script>
   </head>
 <body>
-
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#">Pushpendra<span class="accent">.</span></a>
       <div class="header-actions">
         <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme">🌙</button>
-        <a class="btn ghost" href="resume.pdf" download>Download Resume</a>
+        <div class="social-links-header" aria-hidden="false">
+          <a class="icon-link" href="https://github.com/your-username" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 .5C5.8.5.5 5.8.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.2c-3.2.7-3.8-1.5-3.8-1.5-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1 1.7.9 2.1 1.6.6 1.1 1.7.8 2.1.6.1-.5.4-.8.7-1-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2 1-.3 2-.5 3-.5s2 .2 3 .5c2.4-1.5 3.4-1.2 3.4-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.4.3.8.9.8 1.9v2.8c0 .3.2.8.8.6C20.7 21.4 24 17.1 24 12 24 5.8 18.7.5 12 .5z"/></svg>
+          </a>
+          <a class="icon-link" href="https://www.linkedin.com/in/your-profile" aria-label="LinkedIn" title="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0zM8 8h4.7v2.2h.1c.7-1.3 2.4-2.7 4.9-2.7C22.6 7.5 24 9 24 13.2V24h-5V13.9c0-2.4-.9-4-3.1-4-1.7 0-2.7 1.1-3.1 2.2-.2.5-.2 1.2-.2 1.9V24H8V8z"/></svg>
+          </a>
+        </div>
+        <a class="btn ghost" href="resume.pdf" download target="_blank" rel="noopener noreferrer" aria-label="Download resume">Resume</a>
       </div>
-      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation" aria-controls="main-nav">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <nav class="main-nav" aria-label="Main Navigation">
+      <nav id="main-nav" class="main-nav" aria-label="Main Navigation">
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Projects</a></li>
@@ -38,17 +63,35 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <h1>Hi, I'm <span class="name">Pushpendra Singh</span></h1>
+          <h1>Hi, I'm <span class="name">Pushpendra Singh</span><span class="role"> — DevOps &amp; Cloud Engineer</span></h1>
           <p class="lead"><span id="typed" aria-hidden="true"></span><span class="sr-only">DevOps &amp; Cloud Engineer — Kubernetes, CI/CD, Infrastructure Automation</span></p>
           <div class="hero-ctas">
-            <a class="btn primary" href="#projects">View Work</a>
-            <a class="btn ghost" href="#contact">Contact Me</a>
+            <a class="btn primary" href="#contact" aria-label="Hire Pushpendra">Hire me</a>
+            <a class="btn" href="resume.pdf" target="_blank" rel="noopener noreferrer" aria-label="Download resume">Resume</a>
+            <a class="btn ghost" href="#projects">View Work</a>
           </div>
+
+          <ul class="highlights" role="list" aria-label="Core expertise">
+            <li><strong>Kubernetes</strong><span>Production clusters</span></li>
+            <li><strong>AWS</strong><span>Cloud architecture</span></li>
+            <li><strong>Terraform</strong><span>Infrastructure as Code</span></li>
+            <li><strong>CI/CD</strong><span>Automations & Pipelines</span></li>
+          </ul>
         </div>
         <div class="hero-visual" aria-hidden="true">
           <div class="profile-card">
             <img src="images/profile.svg" alt="Profile" class="profile-image">
-            <p class="profile-role">DevOps · Cloud · Kubernetes</p>
+
+            <div class="profile-role-block">
+              <h3 class="profile-title">Platform Reliability Engineer</h3>
+              <div class="tech-row" aria-hidden="true">
+                <span class="tech" title="Kubernetes"><img src="https://cdn.simpleicons.org/kubernetes/326ce5" alt="Kubernetes"></span>
+                <span class="tech" title="AWS"><img src="images/aws.svg" alt="AWS"></span>
+                <span class="tech" title="Terraform"><img src="https://cdn.simpleicons.org/terraform/6b7280" alt="Terraform"></span>
+              </div>
+            </div>
+
+            <p class="sr-only">DevOps · Cloud · Kubernetes</p>
           </div>
         </div>
       </div>
@@ -61,6 +104,23 @@
       </div>
     </section>
 
+    <section id="case-study" class="case-study reveal">
+      <div class="container">
+        <h2>Featured Case Study</h2>
+        <div class="case-grid">
+          <article class="card featured">
+            <div class="card-head"><h3>Platform Reliability & Faster Deployments</h3></div>
+            <p>Implemented a GitOps-based platform with automated canary rollouts and centralized observability, improving deployment confidence and reducing manual intervention. Customize this summary with your real metrics.</p>
+            <div class="card-meta">Tools: Kubernetes · Helm · ArgoCD · Terraform · Prometheus</div>
+            <div class="card-actions">
+              <a class="btn primary card-link" href="#" data-project="Platform Case Study" data-desc="Detailed case study: platform reliability, GitOps, canary deployments and observability." aria-haspopup="dialog">Read Case Study</a>
+              <a class="btn ghost" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">Repo</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section id="projects" class="projects-section reveal">
       <div class="container">
         <h2>Selected Projects</h2>
@@ -68,17 +128,17 @@
           <article class="card project reveal">
             <div class="card-head"><img class="card-icon" src="https://cdn.simpleicons.org/docker/06b6d4" alt="Docker logo"><h3>Containerized Chat Platform</h3></div>
             <p>End-to-end containerized MERN app with CI/CD and Kubernetes deployment (Helm, ArgoCD).</p>
-            <a class="card-link" href="#">Details →</a>
+            <a class="card-link" href="#" data-project="Containerized Chat Platform" data-desc="End-to-end containerized MERN app with CI/CD and Kubernetes deployment (Helm, ArgoCD)." aria-haspopup="dialog">Details →</a>
           </article>
           <article class="card project reveal">
             <div class="card-head"><img class="card-icon" src="https://cdn.simpleicons.org/grafana/e6522b" alt="Grafana logo"><h3>Monitoring & Observability</h3></div>
             <p>Prometheus, Grafana and Loki stack with dashboards and alerting for cluster metrics.</p>
-            <a class="card-link" href="#">Details →</a>
+            <a class="card-link" href="#" data-project="Monitoring & Observability" data-desc="Prometheus, Grafana and Loki stack with dashboards and alerting for cluster metrics." aria-haspopup="dialog">Details →</a>
           </article>
           <article class="card project reveal">
             <div class="card-head"><img class="card-icon" src="https://cdn.simpleicons.org/terraform/6b7280" alt="Terraform logo"><h3>Infrastructure as Code</h3></div>
             <p>Automated AWS infra using Terraform, modular modules and CI pipelines for safe deployments.</p>
-            <a class="card-link" href="#">Details →</a>
+            <a class="card-link" href="#" data-project="Infrastructure as Code" data-desc="Automated AWS infra using Terraform, modular modules and CI pipelines for safe deployments." aria-haspopup="dialog">Details →</a>
           </article>
         </div>
       </div>
@@ -162,13 +222,13 @@
             </div>
             <div class="contact-card">
               <strong>Phone</strong>
-              <div class="contact-row">+91 6393780549 </div>
+              <div class="contact-row"><a href="tel:+916393780549">+91 6393780549</a></div>
             </div>
             <div class="contact-card">
               <strong>Follow</strong>
               <div class="contact-row social-links">
-                <a href="#" aria-label="LinkedIn">LinkedIn</a>
-                <a href="#" aria-label="GitHub">GitHub</a>
+                <a href="https://www.linkedin.com/in/your-profile" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/your-username" aria-label="GitHub" target="_blank" rel="noopener noreferrer">GitHub</a>
               </div>
             </div>
           </aside>
@@ -204,6 +264,14 @@
       <p>© 2025 Pushpendra Singh — Built with care.</p>
     </div>
   </footer>
+
+  <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" tabindex="-1"></div>
+    <div class="modal-panel" role="document">
+      <button class="modal-close" aria-label="Close">✕</button>
+      <div class="modal-content"></div>
+    </div>
+  </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="script.js" defer></script>

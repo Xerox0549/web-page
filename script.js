@@ -36,8 +36,8 @@
     });
   });
 
-  // Simple typing effect
-  function typeLoop(el, words, typeSpeed=60, pause=1800){
+  // Simple typing effect (reduced pause for snappier UX)
+  function typeLoop(el, words, typeSpeed=60, pause=1200){
     if(!el || !words || !words.length) return;
     let widx=0, ch=0, forward=true;
     const tick = ()=>{
@@ -59,7 +59,7 @@
   }
 
   const typedEl = document.getElementById('typed');
-  typeLoop(typedEl, ['DevOps Engineer','Cloud Platform Engineer','Kubernetes, Helm & ArgoCD','Infrastructure as Code'], 60, 1600);
+  typeLoop(typedEl, ['DevOps Engineer','Cloud Platform Engineer','Kubernetes & Helm','Infrastructure as Code'], 60, 1200);
 
   // Build skill bars from data attributes
   document.querySelectorAll('.skill').forEach(s=>{
@@ -217,6 +217,37 @@
     toastEl.textContent = msg; toastEl.classList.add('show');
     setTimeout(()=>toastEl.classList.remove('show'), ms);
   }
+
+  // simple project modal (accessible)
+  const projectModal = document.getElementById('project-modal');
+  const modalContent = projectModal && projectModal.querySelector('.modal-content');
+  const modalClose = projectModal && projectModal.querySelector('.modal-close');
+  function openProjectModal(title, html){
+    if(!projectModal) return;
+    projectModal.classList.add('open');
+    projectModal.setAttribute('aria-hidden','false');
+    modalContent.innerHTML = `<h3 style="margin-top:0">${title}</h3><div>${html}</div>`;
+    modalClose && modalClose.focus();
+    document.body.style.overflow = 'hidden';
+    document.addEventListener('keydown', onModalKey);
+  }
+  function closeProjectModal(){
+    if(!projectModal) return;
+    projectModal.classList.remove('open');
+    projectModal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onModalKey);
+  }
+  function onModalKey(e){ if(e.key === 'Escape') closeProjectModal(); }
+  // wire up card links
+  document.querySelectorAll('.card-link[data-project]').forEach(a=>{
+    a.addEventListener('click',(ev)=>{
+      ev.preventDefault();
+      openProjectModal(a.dataset.project, a.dataset.desc || a.closest('.card')?.querySelector('p')?.innerHTML || '');
+    });
+  });
+  if(modalClose) modalClose.addEventListener('click', closeProjectModal);
+  projectModal && projectModal.querySelector('.modal-backdrop') && projectModal.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
 
   // expose for debugging
   window.__showToast = showToast;
