@@ -29,6 +29,9 @@
 
 *{box-sizing:border-box}
 html,body{height:100%; max-width: 100%; overflow-x: hidden;}
+/* Prevent mobile browsers from auto-resizing text and ensure images don't overflow */
+html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;}
+img{max-width:100%;height:auto;display:block}
 body{
   margin:0;
   font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
