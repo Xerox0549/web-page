@@ -20,21 +20,72 @@
   window.addEventListener('scroll', onScroll, {passive:true});
   onScroll();
 
-  // Smooth scroll for internal links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      const href = a.getAttribute('href');
-      if(href.length>1 && href.startsWith('#')){
+  // Smooth scroll for internal links and active section highlighting
+  const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+  const sections = document.querySelectorAll('section[id]');
+  
+  // Smooth scroll functionality
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if(href.length > 1 && href.startsWith('#')) {
         const target = document.querySelector(href);
-        if(target){
+        if(target) {
           e.preventDefault();
-          target.scrollIntoView({behavior:'smooth',block:'start'});
-          // close mobile nav
-          if(mainNav.classList.contains('open')) mainNav.classList.remove('open');
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile nav if open
+          if(mainNav && mainNav.classList.contains('open')) {
+            mainNav.classList.remove('open');
+            navToggle && navToggle.setAttribute('aria-expanded', 'false');
+          }
         }
       }
     });
   });
+
+  // Active section highlighting based on scroll position
+  const highlightActiveSection = () => {
+    let current = '';
+    const scrollY = window.pageYOffset;
+    const offset = 100; // Offset for header height
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - offset;
+      const sectionHeight = section.offsetHeight;
+      
+      if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    // Update active nav link
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href').substring(1);
+      if(href === current) {
+        link.classList.add('active');
+      }
+    });
+  };
+
+  // Throttled scroll listener for performance
+  let scrollTimeout;
+  const onScrollThrottled = () => {
+    if(scrollTimeout) return;
+    scrollTimeout = setTimeout(() => {
+      onScroll(); // existing header shadow function
+      highlightActiveSection();
+      scrollTimeout = null;
+    }, 16); // ~60fps
+  };
+
+  window.addEventListener('scroll', onScrollThrottled, {passive: true});
+  
+  // Initial call to set active section on page load
+  highlightActiveSection();
 
   // Simple typing effect (reduced pause for snappier UX)
   function typeLoop(el, words, typeSpeed=60, pause=1200){
@@ -137,8 +188,8 @@
   const form = document.getElementById('contact-form');
   const sendBtn = document.querySelector('.send-btn');
   
-  // Initialize EmailJS
-  emailjs.init('YOUR_PUBLIC_KEY'); // Replace with your EmailJS public key
+  // Initialize EmailJS (Replace with your actual public key)
+  emailjs.init('YOUR_PUBLIC_KEY'); // Get this from EmailJS dashboard
   
   if(form){
     form.addEventListener('submit', async (ev)=>{
@@ -165,7 +216,8 @@
           from_email: email,
           company: company || 'Not specified',
           message: msg,
-          to_email: 'pushpendrasingh9942@gmail.com' // Your email
+          to_name: 'Pushpendra Singh',
+          to_email: 'pushpendrasingh9942@gmail.com'
         };
         
         const response = await emailjs.send(
@@ -180,7 +232,7 @@
           sendBtn && sendBtn.classList.add('sent');
           if(sendBtn) sendBtn.querySelector('.btn-text').textContent = 'Sent ✓';
           
-          showToast('Message sent successfully! I\'ll get back to you soon.', 4000);
+          showToast('Message sent successfully! I\'ll get back to you within 24 hours.', 4000);
           form.reset();
           
           // Reset button after delay
@@ -200,14 +252,16 @@
         sendBtn && sendBtn.classList.remove('sending');
         sendBtn && (sendBtn.disabled = false);
         
-        let errorMessage = 'Failed to send message. Please try again.';
+        let errorMessage = 'Failed to send message. Please try again or contact me directly.';
         if (error.status === 400) {
           errorMessage = 'Invalid email format. Please check your email address.';
         } else if (error.status === 402) {
           errorMessage = 'Service temporarily unavailable. Please try again later.';
+        } else if (error.text && error.text.includes('rate limit')) {
+          errorMessage = 'Too many requests. Please wait a moment and try again.';
         }
         
-        showToast(errorMessage, 4000);
+        showToast(errorMessage, 5000);
       }
     });
   }
