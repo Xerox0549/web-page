@@ -28,9 +28,9 @@
 } 
 
 /* Smooth scrolling and prevent horizontal overflow globally */
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background:var(--bg)}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;background:var(--bg) !important;background-color:#0b1220 !important}
 *{box-sizing:border-box}
-html,body{height:100%; max-width: 100%; overflow-x: hidden;background:var(--bg)}
+html,body{height:100%; max-width: 100%; overflow-x: hidden;background:var(--bg) !important;background-color:#0b1220 !important}
 /* Prevent mobile browsers from auto-resizing text and ensure images don't overflow */
 img{max-width:100%;height:auto;display:block}
 
@@ -48,11 +48,13 @@ h1,h2,h3,p{word-wrap:break-word;overflow-wrap:break-word}
 body{
   margin:0;
   font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  background:linear-gradient(180deg,var(--bg),#071226);
+  background:linear-gradient(180deg,var(--bg),#071226) !important;
+  background-color:#0b1220 !important;
   color:var(--text);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   -webkit-font-variant-ligatures:contextual;
+  min-height:100vh;
 }
 
 h1,h2,h3{letter-spacing:-0.01em}
@@ -119,16 +121,90 @@ section#case-study{padding:24px 0}
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
 .brand{color:var(--text);text-decoration:none;font-weight:700;font-size:1.1rem}
 .accent{color:var(--brand);margin-left:4px}
-.nav-toggle{background:transparent;border:0;color:var(--muted);display:none}
-.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:20px}
-.main-nav a{color:var(--muted);text-decoration:none;font-weight:600;position:relative;transition:color .3s ease}
+/* Navigation Styles */
+.nav-toggle{background:transparent;border:0;color:var(--muted);display:none;cursor:pointer;padding:8px;border-radius:6px;transition:color .2s ease}
+.nav-toggle:hover{color:var(--text)}
+.main-nav{display:block}
+.main-nav ul{list-style:none;margin:0;padding:0;display:flex;gap:20px;align-items:center}
+.main-nav a{color:var(--muted);text-decoration:none;font-weight:600;position:relative;transition:color .3s ease;padding:8px 12px;border-radius:6px}
 .main-nav a:hover{color:var(--text)}
 .main-nav a.active{color:var(--brand)}
 .main-nav a.active::after{content:'';position:absolute;bottom:-8px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--brand),var(--accent));border-radius:2px}
 
-/* Mobile nav active styles */
+/* Mobile Navigation */
 @media (max-width:880px){
-  .main-nav a.active::after{bottom:-4px;height:2px}
+  .nav-toggle{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    z-index:1001;
+    position:relative;
+  }
+  
+  .main-nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:var(--card);
+    border:1px solid var(--glass);
+    border-radius:0 0 12px 12px;
+    box-shadow:0 8px 30px rgba(2,6,23,0.6);
+    z-index:1000;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-10px);
+    transition:opacity .3s ease, visibility .3s ease, transform .3s ease;
+    max-height:0;
+    overflow:hidden;
+  }
+  
+  .main-nav.open{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    max-height:300px;
+  }
+  
+  .main-nav ul{
+    flex-direction:column;
+    gap:0;
+    padding:16px 0;
+    display:flex !important; /* Force display even if other rules try to hide */
+  }
+  
+  .main-nav li{
+    width:100%;
+  }
+  
+  .main-nav a{
+    display:block;
+    padding:12px 20px;
+    color:var(--text);
+    border-radius:0;
+    transition:background .2s ease, color .2s ease;
+    width:100%;
+    text-align:left;
+  }
+  
+  .main-nav a:hover{
+    background:rgba(6,182,212,0.1);
+    color:var(--brand);
+  }
+  
+  .main-nav a.active{
+    background:rgba(6,182,212,0.15);
+    color:var(--brand);
+  }
+  
+  .main-nav a.active::after{
+    display:none; /* Hide the underline in mobile */
+  }
+  
+  /* Ensure header has proper positioning context */
+  .site-header{
+    position:relative;
+  }
 }
 
 .header-actions{display:flex;align-items:center;gap:12px}
@@ -450,45 +526,11 @@ section#about{padding:28px 0}
 /* header scrolled shadow */
 .site-header.scrolled{box-shadow:0 6px 24px rgba(3,7,18,0.6)}
 
-/* Nav toggle and mobile menu */
-.nav-toggle{display:none}
-.main-nav{display:block}
-.main-nav ul{align-items:center}
-
 /* toast */
 .toast{position:fixed;right:20px;bottom:20px;background:var(--card);color:var(--text);padding:12px 16px;border-radius:10px;border:1px solid var(--glass);box-shadow:0 8px 30px rgba(2,6,23,0.45);opacity:0;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease;z-index:60}
 .toast.show{opacity:1;transform:none}
 
-@media (max-width:880px){
-  .nav-toggle{display:inline-flex;align-items:center;gap:8px;cursor:pointer}
-  .main-nav{
-    position:absolute;
-    top:100%;
-    left:20px;
-    right:20px;
-    background:var(--card);
-    padding:16px;
-    border-radius:10px;
-    display:none;
-    border:1px solid var(--glass);
-    box-shadow:0 8px 30px rgba(2,6,23,0.4);
-    z-index:100;
-  }
-  .main-nav.open{display:block}
-  .main-nav ul{
-    flex-direction:column;
-    gap:12px;
-    display:flex !important; /* Override any display:none */
-  }
-  .main-nav a{
-    padding:8px 12px;
-    border-radius:6px;
-    transition:background .2s ease;
-  }
-  .main-nav a:hover{
-    background:rgba(255,255,255,0.05);
-  }
-}
+
 
 .site-footer{border-top:1px solid rgba(255,255,255,0.02);padding:22px 0;color:var(--muted);text-align:center}
 
@@ -601,7 +643,7 @@ section#about{padding:28px 0}
   .highlights{flex-direction:column;gap:8px}
   .highlights li{width:100%;min-width:unset}
 }
-/* Project Modal Styles */
+/* Project Modal Styles - FIXED */
 .modal {
   position: fixed;
   top: 0;
@@ -609,16 +651,18 @@ section#about{padding:28px 0}
   right: 0;
   bottom: 0;
   z-index: 1000;
-  display: none;
+  display: none !important; /* Force hide by default */
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal.open {
-  display: flex;
+  display: flex !important; /* Only show when explicitly opened */
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .modal-backdrop {
@@ -658,6 +702,7 @@ section#about{padding:28px 0}
   border-radius: 6px;
   transition: color 0.2s ease, background 0.2s ease;
   z-index: 1002;
+  display: none; /* Hide close button completely for now */
 }
 
 .modal-close:hover {
@@ -693,5 +738,6 @@ body.modal-open {
     top: 12px;
     right: 12px;
     font-size: 20px;
+    display: none; /* Ensure hidden on mobile too */
   }
 }

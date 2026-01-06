@@ -5,17 +5,21 @@
   const mainNav = document.querySelector('.main-nav');
   const toastEl = document.getElementById('toast');
 
-  // Mobile nav toggle
+  // Mobile nav toggle with improved functionality
   if(navToggle && mainNav){
     navToggle.addEventListener('click', (e)=>{
       e.preventDefault();
+      e.stopPropagation();
+      
       const isOpen = mainNav.classList.toggle('open');
       navToggle.setAttribute('aria-expanded', String(isOpen));
       
-      // Close nav when clicking outside
+      // Add/remove body class to prevent scrolling when menu is open
       if(isOpen) {
+        document.body.classList.add('nav-open');
         document.addEventListener('click', closeNavOnClickOutside);
       } else {
+        document.body.classList.remove('nav-open');
         document.removeEventListener('click', closeNavOnClickOutside);
       }
     });
@@ -25,9 +29,21 @@
       if(!mainNav.contains(e.target) && !navToggle.contains(e.target)) {
         mainNav.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
         document.removeEventListener('click', closeNavOnClickOutside);
       }
     }
+    
+    // Close nav when clicking on nav links
+    const navLinks = mainNav.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mainNav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('nav-open');
+        document.removeEventListener('click', closeNavOnClickOutside);
+      });
+    });
   }
 
   // header shadow on scroll
@@ -368,7 +384,9 @@
     setTimeout(()=>toastEl.classList.remove('show'), ms);
   }
 
-  // simple project modal (accessible)
+  // Project modal functionality - DISABLED to prevent floating close button
+  // Modal is hidden via CSS and functionality is disabled for production
+  /*
   const projectModal = document.getElementById('project-modal');
   const modalContent = projectModal && projectModal.querySelector('.modal-content');
   const modalClose = projectModal && projectModal.querySelector('.modal-close');
@@ -398,6 +416,18 @@
   });
   if(modalClose) modalClose.addEventListener('click', closeProjectModal);
   projectModal && projectModal.querySelector('.modal-backdrop') && projectModal.querySelector('.modal-backdrop').addEventListener('click', closeProjectModal);
+  */
+
+  // Simple project details display (replacement for modal)
+  document.querySelectorAll('.card-link[data-project]').forEach(a=>{
+    if(a.classList.contains('details-link')) {
+      a.addEventListener('click',(ev)=>{
+        ev.preventDefault();
+        const desc = a.dataset.desc || 'Project details coming soon.';
+        showToast('Project details: ' + desc.replace(/<[^>]*>/g, ''), 5000);
+      });
+    }
+  });
 
   // expose for debugging
   window.__showToast = showToast;
